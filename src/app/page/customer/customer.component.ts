@@ -94,4 +94,16 @@ export class CustomerComponent implements OnInit {
     }
   }
 
+  deleteCustomer(id:String){
+    fetch("http://localhost:8080/customer/" + id, {
+      method: "DELETE",
+        body: JSON.stringify(this.customer),
+        headers: {
+          "content-type" : "application/json"
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+    })
+  }
 }
