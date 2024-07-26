@@ -6,9 +6,20 @@
       </a>
 
       <ul class="nav nav-pills">
-        <li class="nav-item"><button class="nav-link active" aria-current="page">Rental</button></li>
-        <li class="nav-item"><button class="nav-link">Customers</button></li>
-        <li class="nav-item"><button class="nav-link">Items</button></li>
+        <li class="nav-item"><button [routerLink]="['/rental']"  
+          (click)="clickButton('/rental')" 
+          [ngClass]="{'active' : selectPage=='/rental' || selectPage== ''}" class="nav-link" aria-current="page">Rental</button>
+        </li>
+
+        <li class="nav-item"><button [routerLink]="['/customer']"  
+          (click)="clickButton('/customer')"  
+          [ngClass]="{'active' : selectPage=='/customer'}" class="nav-link">Customers</button>
+        </li>
+
+        <li class="nav-item"><button [routerLink]="['/item']"  
+          (click)="clickButton('/item')" 
+          [ngClass]="{'active' : selectPage=='/item'}"  class="nav-link">Items</button>
+        </li>
         
         
       </ul>

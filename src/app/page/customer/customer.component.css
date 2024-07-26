@@ -1,0 +1,21 @@
+.container{
+    text-align: center;
+}
+
+.btn{
+    margin-right: 10px;
+}
+
+.searchRow{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.search{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchRow button{
+    margin-left: 10px;
+}
