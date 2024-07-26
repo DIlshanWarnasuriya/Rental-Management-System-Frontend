@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row searchRow">
+        <div class="col-4 d-flex search">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                    class="bi bi-plus-circle"></i></button>
+            <input type="text" class="form-control" id="txtFirstName" placeholder="Search">
+            <button type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
+        </div>
+    </div>
+
+    <div class="row tableRow">
+        <table class="table">
+            <thead>
+                <tr class="tableRow">
+                    <th scope="col">#Id</th>
+                    <th scope="col">Customer Id</th>
+                    <th scope="col">Item Id</th>
+                    <th scope="col">Rental Date</th>
+                    <th scope="col">Expected Date</th>
+                    <th scope="col">Return Date</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Fine</th>
+                    <th scope="col">Total Cost</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">abshac</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!---------------------------- Add Rantel Form ------------------------------------------>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Rental</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Item Id</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Customer Id</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Rental Date</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Expected Date</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">Add Rental</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
