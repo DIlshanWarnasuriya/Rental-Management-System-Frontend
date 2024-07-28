@@ -17,6 +17,7 @@ export class ItemComponent implements OnInit {
   }
 
   public itemList: any = null;
+  public searchData : String = "";
 
   public item: any = {
     id: "",
@@ -142,6 +143,18 @@ export class ItemComponent implements OnInit {
     });
   }
 
+
+  //------------------------------------- Search Item ---------------------------------------
+
+  searchItem() {
+    
+    fetch("http://localhost:8080/item/" + this.searchData)
+      .then(res => res.json())
+      .then(data => {
+        const list = [data];
+        this.itemList = list;
+      })
+  }
 
 
 

@@ -4,8 +4,8 @@
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="cleanAddItemFields()">
                 <i class="bi bi-plus-circle"></i>
             </button>
-            <input type="text" class="form-control" id="txtFirstName" placeholder="Search">
-            <button type="button" class="btn btn-primary">
+            <input type="text" class="form-control" id="txtFirstName" placeholder="Search" [(ngModel)]="searchData">
+            <button type="button" class="btn btn-primary"  (click)="searchItem()">
                 <i class="bi bi-search"></i>
             </button>
         </div>
