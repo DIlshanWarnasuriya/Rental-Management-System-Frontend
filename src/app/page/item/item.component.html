@@ -31,7 +31,7 @@
                     <td>{{item.finePerDay}}</td>
                     <td>{{item.available }}</td>
                     <td>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModel">
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModel" (click)="editItem(item.id)">
                             <i class="bi bi-pencil-square"></i>
                         </button>
                         <button type="button" class="btn btn-danger">
@@ -51,7 +51,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Customer</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -72,6 +72,41 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="addItem()">Add Item</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------- Update Item Form ------------------------------------------>
+
+<div class="modal fade" id="updateModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Item</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Name</label>
+                    <input type="text" class="form-control" id="recipient-name" [(ngModel)]="item.name">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Rental Per Day</label>
+                    <input type="number" class="form-control" id="recipient-name" [(ngModel)]="item.rentalPerDay">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Fine Per Day</label>
+                    <input type="number" class="form-control" id="recipient-name" [(ngModel)]="item.finePerDay">
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"  (click)="updateItem()">Update</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
