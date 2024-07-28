@@ -111,6 +111,36 @@ export class ItemComponent implements OnInit {
   }
 
 
+  //------------------------------------- Delete Item ---------------------------------------
+
+  deleteItem(id: String) {
+
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#5d6369",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        fetch("http://localhost:8080/item/" + id, {
+          method: "DELETE"
+        })
+          .then(res => res.json())
+          .then(data => {
+            this.loadTable();
+          })
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+  }
 
 
 
