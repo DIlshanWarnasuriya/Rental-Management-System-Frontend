@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row searchRow">
         <div class="col-4 d-flex search">
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="cleanAddItemFields()">
                 <i class="bi bi-plus-circle"></i>
             </button>
             <input type="text" class="form-control" id="txtFirstName" placeholder="Search">
@@ -29,7 +29,7 @@
                     <td>{{item.name}}</td>
                     <td>{{item.rentalPerDay}}</td>
                     <td>{{item.finePerDay}}</td>
-                    <td>{{item.available}}</td>
+                    <td>{{item.available }}</td>
                     <td>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModel">
                             <i class="bi bi-pencil-square"></i>
@@ -41,5 +41,39 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+
+<!---------------------------- Add Item Form ------------------------------------------>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Customer</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Name</label>
+                    <input type="text" class="form-control" id="recipient-name" [(ngModel)]="item.name">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Rental Per Day</label>
+                    <input type="number" class="form-control" id="recipient-name" [(ngModel)]="item.rentalPerDay">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Fine Per Day</label>
+                    <input type="number" class="form-control" id="recipient-name" [(ngModel)]="item.finePerDay">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="addItem()">Add Item</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
