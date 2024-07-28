@@ -12,17 +12,18 @@ import Swal from 'sweetalert2'
 })
 export class CustomerComponent implements OnInit {
 
-  public customerList: any = null;
+  ngOnInit(): void {
+    this.loadTable();
+  }
 
-  customer = {
+  public customerList: any = null;
+  public searchData: String = "";
+
+  public customer = {
     id: "",
     name: "",
     contact: "",
     city: ""
-  }
-
-  ngOnInit(): void {
-    this.loadTable();
   }
 
   loadTable() {
@@ -30,6 +31,9 @@ export class CustomerComponent implements OnInit {
       .then(res => res.json())
       .then(data => this.customerList = data)
   }
+
+
+  //------------------------------------- Add Customer ---------------------------------------
 
   addCustomer() {
     if (this.customer.name == "" || this.customer.contact == "" || this.customer.city == "") {
@@ -43,32 +47,45 @@ export class CustomerComponent implements OnInit {
         method: "POST",
         body: JSON.stringify(this.customer),
         headers: {
-          "content-type" : "application/json"
+          "content-type": "application/json"
         }
       })
         .then(res => res.json())
         .then(data => {
           this.loadTable();
           Swal.fire({
-            title: data.name +  " Added Success",
+            title: data.name + " Added Success",
             icon: "success"
           });
         })
     }
   }
 
-  editCustomer(id:String){
-    fetch("http://localhost:8080/customer/" + id)
-    .then(res => res.json())
-    .then(data => {
-      this.customer.id = data.id;
-      this.customer.name = data.name;
-      this.customer.contact = data.contact;
-      this.customer.city = data.city;
-    })
+  cleanAddCustomerFields() {
+    this.customer.id = "";
+    this.customer.name = "";
+    this.customer.contact = "";
+    this.customer.city = "";
   }
 
-  updateCustomer(){
+
+  //------------------------------------- Update Customer ---------------------------------------
+
+  editCustomer(id: String) {
+    fetch("http://localhost:8080/customer/" + id)
+      .then(res => res.json())
+      .then(data => {
+
+        data.forEach((element: { id: any; name: any; contact: any; city: any; }) => {
+          this.customer.id = element.id;
+          this.customer.name = element.name;
+          this.customer.contact = element.contact;
+          this.customer.city = element.city;
+        });
+      })
+  }
+
+  updateCustomer() {
     if (this.customer.name == "" || this.customer.contact == "" || this.customer.city == "") {
       Swal.fire({
         title: "Please enter all data",
@@ -80,30 +97,61 @@ export class CustomerComponent implements OnInit {
         method: "PATCH",
         body: JSON.stringify(this.customer),
         headers: {
-          "content-type" : "application/json"
+          "content-type": "application/json"
         }
       })
         .then(res => res.json())
         .then(data => {
           this.loadTable();
           Swal.fire({
-            title: data.name +  " Update Success",
+            title: data.name + " Update Success",
             icon: "success"
           });
         })
     }
   }
 
-  deleteCustomer(id:String){
-    fetch("http://localhost:8080/customer/" + id, {
-      method: "DELETE",
-        body: JSON.stringify(this.customer),
-        headers: {
-          "content-type" : "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(data => {
-    })
+
+  //------------------------------------- Delete Customer ---------------------------------------
+
+  deleteCustomer(id: String) {
+
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#5d6369",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        fetch("http://localhost:8080/customer/" + id, {
+          method: "DELETE"
+        })
+          .then(res => res.json())
+          .then(data => {
+            this.loadTable();
+          })
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
   }
+
+  //------------------------------------- Search Customer ---------------------------------------
+
+  searchCustomer() {
+
+    fetch("http://localhost:8080/customer/" + this.searchData)
+      .then(res => res.json())
+      .then(data => this.customerList = data)
+  }
+
+
+
 }
