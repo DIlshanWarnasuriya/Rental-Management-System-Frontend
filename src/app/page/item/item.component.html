@@ -12,9 +12,9 @@
     </div>
 
     <div class="row tableRow">
-        <table class="table">
+        <table class="align-content-center">
             <thead>
-                <tr class="tableRow">
+                <tr class="tableheader">
                     <th scope="col">#Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Rental Per Day</th>
@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of itemList">
+                <tr *ngFor="let item of itemList" class=" tableData border-bottom">
                     <th scope="row">{{item.id}}</th>
                     <td>{{item.name}}</td>
                     <td>{{item.rentalPerDay}}</td>
