@@ -12,9 +12,9 @@
     </div>
 
     <div class="row tableRow">
-        <table class="table">
+        <table class="align-content-center">
             <thead>
-                <tr class="tableRow">
+                <tr class="tableheader">
                     <th scope="col">#Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Contact</th>
@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let customer of customerList">
+                <tr *ngFor="let customer of customerList" class=" tableData border-bottom">
                     <th scope="row">{{customer.id}}</th>
                     <td>{{customer.name}}</td>
                     <td>{{customer.contact}}</td>

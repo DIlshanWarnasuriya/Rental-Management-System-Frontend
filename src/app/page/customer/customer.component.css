@@ -19,3 +19,15 @@
 .searchRow button{
     margin-left: 10px;
 }
+
+.tableData button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tableheader th{
+    background-color: #295dcf;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
