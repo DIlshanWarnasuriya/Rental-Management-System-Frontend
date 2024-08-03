@@ -17,9 +17,11 @@ export class RentalComponent implements OnInit{
   public customerList: any = null;
 
   daysDifference: number;
+  today: string;
 
   constructor() {
     this.daysDifference = this.numberOfDays('2024-07-21', new Date().toISOString().split('T')[0]);
+    this.today = new Date().toISOString().split('T')[0];
   }
 
   numberOfDays(startDate: string, endDate: string): number {
@@ -81,23 +83,23 @@ export class RentalComponent implements OnInit{
   }
  
 
-  addRental(){
+  //------------------------------------- ADD Rental ---------------------------------------
 
-    
-    if(this.rental.customerId=="" || this.rental.itemId=="" ||  this.rental.rentalDate=="" ||  this.rental.expectedDate==""){
+  addRental(){
+    this.rental.rentalDate = this.today;
+    if(this.rental.customerId=="" || this.rental.itemId=="" ||  this.rental.expectedDate==""){
       Swal.fire({
         title: "Please enter all data",
         icon: "warning"
       });
     }
-    else if(this.numberOfDays(this.rental.rentalDate, this.rental.expectedDate) <= 0){
+    else if(this.numberOfDays(this.today, this.rental.expectedDate) <= 0){
       Swal.fire({
-        title: "Please enter walid rental and expected dates",
+        title: "Please enter valid expected date",
         icon: "warning"
       });
     }
     else{
-
       fetch("http://localhost:8080/rental", {
         method: "POST",
         body: JSON.stringify(this.rental),
@@ -109,6 +111,7 @@ export class RentalComponent implements OnInit{
       .then(data => {
         if(data.id!=null){
           this.loadTable();
+          this.clearRental();
           Swal.fire({
             title: "Rental Added Success",
             icon: "success"
@@ -116,17 +119,51 @@ export class RentalComponent implements OnInit{
         }
       })
       
-
-      
-
-      
-
     }
-    
+  }
+  clearRental(){
+    this.rental.customerId="";
+    this.rental.itemId="";
+    this.rental.expectedDate="",
+    this.rental.rentalDate=""
   }
 
 
-  
+  //------------------------------------- Delete Item ---------------------------------------
 
-  
+  deleteRental(id: String) {
+
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#5d6369",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        fetch("http://localhost:8080/rental/" + id, {
+          method: "DELETE"
+        })
+          .then(res => res.json())
+          .then(data => {
+            this.loadTable();
+          })
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Rental has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+  }
+
+
+
+
+
+
+
 }
