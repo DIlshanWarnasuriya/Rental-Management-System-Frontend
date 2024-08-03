@@ -36,13 +36,14 @@
                     <td>{{rental.fine}}</td>
                     <td>{{rental.totalCost}}</td>
                     <td class="actions">
-                        <button *ngIf="rental.returnDate == null" type="button" class="btn btn-warning" >
+                        <button *ngIf="rental.returnDate == null" type="button" class="btn btn-warning">
                             <i class="bi bi-arrow-clockwise"></i>
                         </button>
                         <button *ngIf="rental.returnDate != null" type="button" class="btn btn-success">
                             <i class="bi bi-printer"></i>
                         </button>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModel" >
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#updateModel">
                             <i class="bi bi-pencil-square"></i>
                         </button>
                         <button type="button" class="btn btn-danger">
@@ -68,25 +69,31 @@
             <div class="modal-body">
 
                 <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">Item Id</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <label for="recipient-name" class="col-form-label">Select Item</label>
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="rental.itemId">
+                        <option *ngFor="let item of itemList"  value="{{item.id}}">{{item.id}} - {{item.name}}</option>
+                    </select>
                 </div>
+
                 <div class="mb-3">
-                    <label for="recipient-name" class="col-form-label">Customer Id</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <label for="recipient-name" class="col-form-label">Select Customer</label>
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="rental.customerId">
+                        <option *ngFor="let customer of customerList"  value="{{customer.id}}">{{customer.id}} - {{customer.name}}</option>
+                    </select>
                 </div>
+                
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Rental Date</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <input type="date" class="form-control" id="recipient-name" [(ngModel)]="rental.rentalDate">
                 </div>
                 <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Expected Date</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <input type="date" class="form-control" id="recipient-name" [(ngModel)]="rental.expectedDate">
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success">Add Rental</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="addRental()">Add Rental</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
